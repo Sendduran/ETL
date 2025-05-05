@@ -13,7 +13,7 @@ def clean_unicode(data_list: list[dict]) -> list[dict]:
         for key, value in item.items():
             if isinstance(value, str):
                 try:
-                    item[key]:str = value.encode('latin1', errors='ignore').decode('utf-8', errors='ignore')
+                    item[key] = value.encode('latin1', errors='ignore').decode('utf-8', errors='ignore')
                 except UnicodeEncodeError:
                     pass
     return data_list
@@ -21,7 +21,7 @@ def clean_unicode(data_list: list[dict]) -> list[dict]:
 def add_category(data_list:list[dict])->list[dict]:
     for item in data_list:
         is_con_no:bool = True if re.search(r"\d+",item["fact"]) else False
-        item.update({"is_no":is_con_no})
+        item.update({"has_no":is_con_no})
     return data_list
 
 
