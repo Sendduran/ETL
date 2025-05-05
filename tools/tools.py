@@ -28,5 +28,3 @@ def add_category(data_list:list[dict])->list[dict]:
 modified_data = add_category(clean_unicode(data_txt))
 with open(file_path, 'w') as file:
     json.dump(modified_data, file, indent=4)
-
-print("DONE")
