@@ -1,12 +1,11 @@
 import json
 import re 
 import os 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 current_dir:str = os.path.dirname(__file__)  
 file_path: str = os.path.join(current_dir, '../data/sample.json')
-
-with open(file_path, 'r') as file:
-    data_txt:list[dict] = json.load(file)
 
 def clean_unicode(data_list: list[dict]) -> list[dict]:
     for item in data_list:
@@ -25,6 +24,15 @@ def add_category(data_list:list[dict])->list[dict]:
     return data_list
 
 
-modified_data = add_category(clean_unicode(data_txt))
-with open(file_path, 'w') as file:
-    json.dump(modified_data, file, indent=4)
+def scrape():
+    driver=webdriver.Firefox()
+    driver.get("https://raw.githubusercontent.com/vetstoria/random-k9-etl/refs/heads/main/source_data.json")
+    elem  = driver.find_element(By.TAG_NAME, "body")
+    body:str = elem.get_attribute('innerText')
+    json_data:list[dict] = json.loads(body)
+    cleaned_data:list[dict] = clean_unicode(json_data)
+    driver.close()
+    return cleaned_data
+
+
+
