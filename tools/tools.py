@@ -1,10 +1,10 @@
 import json
-import re 
-import os 
+import re
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-current_dir:str = os.path.dirname(__file__)  
+current_dir:str = os.path.dirname(__file__)
 file_path: str = os.path.join(current_dir, '../data/sample.json')
 
 def clean_unicode(data_list: list[dict]) -> list[dict]:
@@ -33,6 +33,3 @@ def scrape():
     cleaned_data:list[dict] = clean_unicode(json_data)
     driver.close()
     return cleaned_data
-
-
-

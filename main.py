@@ -7,4 +7,3 @@ connection = Connection()
 data = connection.display_data()
 print(data)
 connection.close_connection()
-
