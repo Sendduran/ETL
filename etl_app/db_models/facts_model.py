@@ -7,5 +7,3 @@ class Facts(SQLModel, table=True):
     fact : str # This is a must field
     created_time : str # Iso format returns a string
     has_no : bool | bool = Field(default = False)
-
-

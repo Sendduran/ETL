@@ -1,1 +1,1 @@
-from .connection import engine, SQLModel
+from .DatabaseConnection import DatabaseConnection

@@ -1,14 +1,6 @@
 from etl_app.tools import scrape
 from sentry_config import init_sentry
-
-from sqlmodel import SQLModel
-from etl_app.db_models import facts_model 
-from etl_app.connection import engine, SQLModel
-#Always import the models and the connection. SQLModel (table = true) will create a metadata . without the metadata createall doest work.
-
-
-init_sentry()
-
+from etl_app.connection import DatabaseConnection
 
 ############################## Do not delete  ########################################################
 
@@ -23,11 +15,23 @@ init_sentry()
 #######################################################################################################################
 
 
-def main():
-    SQLModel.metadata.create_all(engine)
-    # data:str = scrape()
-    return None
 
-main()
+db_name = "facts_db"
+db_user = "postgres"
+db_password = "admin"
+db_server = "localhost"
+db_port = 5432
+
+def main():    
+    init_sentry()
+    # scrape()
+    db = DatabaseConnection(db_name, db_user, db_password, db_server, db_port)
+    db.create_db_and_tables()
+    
+
+if __name__ == "__main__":
+    main()
+
+
 
 
