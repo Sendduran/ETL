@@ -5,10 +5,10 @@ from .sentry_config import init_sentry
 
 init_sentry()
 
-a = 1/0
+# a = 1/0
 
 def main():
     data:str = scrape()
     return data
 
-main()
+#main()
