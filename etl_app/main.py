@@ -3,6 +3,8 @@ from etl_app.sentry_config import init_sentry
 from etl_app.connection import DatabaseConnection
 from dotenv import load_dotenv
 import os
+from etl_app.services.fact_service import FactService
+
 load_dotenv()
 
 db_name = os.getenv("db_name")
@@ -16,7 +18,8 @@ def main():
     facts_data =  scrape()
     db = DatabaseConnection(db_name, db_user, db_password, db_server, db_port)
     db.create_db_and_tables()
-    db.bulk_insert_fact(facts_data)
+    facts_table = FactService(db)
+    facts_table.bulk_insert_fact(facts_data)
 
 
 if __name__ == "__main__":
