@@ -1,5 +1,5 @@
 from etl_app.tools import scrape
-from sentry_config import init_sentry
+from etl_app.sentry_config import init_sentry
 from etl_app.connection import DatabaseConnection
 from dotenv import load_dotenv
 import os
