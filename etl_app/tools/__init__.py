@@ -1,1 +1,1 @@
-from .tools import scrape
+from .tools import scrape, bulk_insert_fact
