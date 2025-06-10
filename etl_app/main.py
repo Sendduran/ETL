@@ -3,7 +3,7 @@ from etl_app.sentry_config import init_sentry
 from etl_app.connection import DatabaseConnection
 from dotenv import load_dotenv
 import os
-
+load_dotenv()
 
 db_name = os.getenv("db_name")
 db_user = os.getenv("db_user")
