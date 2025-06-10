@@ -1,0 +1,15 @@
+[run]
+branch = True
+source =
+    etl_app
+
+[report]
+omit =
+    */__init__.py
+    */tests/*
+    */test_*.py
+    .venv/*
+    */.venv/*
+    */site-packages/*
+show_missing = True
+skip_covered = True
