@@ -2,6 +2,7 @@ import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from datetime import datetime
+import requests
 
 def clean_unicode(uncleaned_strting: str) -> str:
     try:
@@ -16,10 +17,9 @@ def convert_to_timestamp(time:str)-> int:
     return int(float(striptime.timestamp())*1000000)
 
 def scrape()-> list[dict]:
-    driver=webdriver.Firefox()
-    driver.get("https://raw.githubusercontent.com/vetstoria/random-k9-etl/refs/heads/main/source_data.json")
-    elem  = driver.find_element(By.TAG_NAME, "body")
-    body:str = elem.get_attribute('innerText')
-    json_data:list[dict] = json.loads(body)
-    driver.close()
+
+    reponse = requests.get("https://raw.githubusercontent.com/vetstoria/random-k9-etl/refs/heads/main/source_data.json")
+    reponse.raise_for_status()  # Ensure we got a successful response
+    json_data:list[dict] = reponse.json()
+
     return json_data
