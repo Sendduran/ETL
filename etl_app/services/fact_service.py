@@ -1,5 +1,6 @@
 from etl_app.db_models.facts_model import Facts
 from etl_app.tools.tools import clean_unicode, convert_to_timestamp
+from sqlmodel import Session
 
 class FactService:
     """
@@ -10,6 +11,7 @@ class FactService:
         self.db_connection = db_connection
 
     def bulk_insert_fact(self, facts_data: list[dict]) -> dict:
+        session:Session # for editor autocompletion
         with self.db_connection._get_session() as session:
             for item in facts_data:
                 item.update(fact=clean_unicode(item['fact']))

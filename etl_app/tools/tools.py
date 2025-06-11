@@ -1,6 +1,3 @@
-import json
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 from datetime import datetime
 import requests
 
